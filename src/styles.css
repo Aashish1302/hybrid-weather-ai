@@ -1,0 +1,496 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Hybrid Weather Intelligence — design system.
+ * Semantic tokens only. Weather atmospheres are applied via [data-weather]
+ * on the <html> element and only change background/atmosphere tokens,
+ * never the risk semantics (safe/warn/high/severe).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-safe: var(--safe);
+  --color-safe-foreground: var(--safe-foreground);
+  --color-warn: var(--warn);
+  --color-warn-foreground: var(--warn-foreground);
+  --color-high: var(--high);
+  --color-high-foreground: var(--high-foreground);
+  --color-severe: var(--severe);
+  --color-severe-foreground: var(--severe-foreground);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-panel: 0 1px 2px oklch(0.2 0.05 250 / 0.06), 0 12px 32px -18px oklch(0.2 0.05 250 / 0.28);
+  --shadow-lift: 0 2px 4px oklch(0.2 0.05 250 / 0.08), 0 24px 48px -24px oklch(0.2 0.05 250 / 0.35);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.21 0.045 258);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.965 0.009 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.045 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.045 258);
+  --primary: oklch(0.55 0.15 245);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.945 0.015 240);
+  --secondary-foreground: oklch(0.28 0.05 258);
+  --muted: oklch(0.955 0.01 240);
+  --muted-foreground: oklch(0.52 0.03 252);
+  --accent: oklch(0.72 0.13 206);
+  --accent-foreground: oklch(0.18 0.05 250);
+  --destructive: oklch(0.56 0.21 27);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.905 0.012 245);
+  --input: oklch(0.9 0.012 245);
+  --ring: oklch(0.6 0.13 240);
+
+  --safe: oklch(0.63 0.16 150);
+  --safe-foreground: oklch(0.99 0.01 150);
+  --warn: oklch(0.79 0.15 85);
+  --warn-foreground: oklch(0.25 0.06 70);
+  --high: oklch(0.7 0.18 48);
+  --high-foreground: oklch(0.2 0.06 45);
+  --severe: oklch(0.57 0.22 22);
+  --severe-foreground: oklch(0.99 0.01 20);
+
+  --chart-1: oklch(0.55 0.15 245);
+  --chart-2: oklch(0.7 0.14 200);
+  --chart-3: oklch(0.65 0.17 300);
+  --chart-4: oklch(0.72 0.16 60);
+  --chart-5: oklch(0.63 0.16 150);
+
+  --sidebar: oklch(0.99 0.004 240);
+  --sidebar-foreground: oklch(0.21 0.045 258);
+  --sidebar-primary: oklch(0.55 0.15 245);
+  --sidebar-primary-foreground: oklch(0.99 0.005 240);
+  --sidebar-accent: oklch(0.955 0.01 240);
+  --sidebar-accent-foreground: oklch(0.28 0.05 258);
+  --sidebar-border: oklch(0.905 0.012 245);
+  --sidebar-ring: oklch(0.6 0.13 240);
+
+  /* atmosphere */
+  --atmos: radial-gradient(
+      120% 80% at 15% -10%,
+      oklch(0.85 0.09 235 / 0.55),
+      transparent 60%
+    ),
+    radial-gradient(90% 70% at 100% 0%, oklch(0.9 0.07 200 / 0.45), transparent 55%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.62 0.15 245), oklch(0.72 0.13 206));
+  --grid-line: oklch(0.55 0.1 245 / 0.07);
+}
+
+.dark {
+  --background: oklch(0.17 0.035 262);
+  --foreground: oklch(0.96 0.008 240);
+  --surface: oklch(0.215 0.04 262);
+  --surface-2: oklch(0.25 0.042 262);
+  --card: oklch(0.215 0.04 262);
+  --card-foreground: oklch(0.96 0.008 240);
+  --popover: oklch(0.215 0.04 262);
+  --popover-foreground: oklch(0.96 0.008 240);
+  --primary: oklch(0.74 0.13 215);
+  --primary-foreground: oklch(0.17 0.04 262);
+  --secondary: oklch(0.27 0.04 262);
+  --secondary-foreground: oklch(0.95 0.01 240);
+  --muted: oklch(0.26 0.038 262);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: oklch(0.7 0.15 295);
+  --accent-foreground: oklch(0.97 0.01 300);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 20);
+  --border: oklch(0.98 0.01 240 / 0.12);
+  --input: oklch(0.98 0.01 240 / 0.16);
+  --ring: oklch(0.7 0.12 220);
+
+  --safe: oklch(0.7 0.16 155);
+  --safe-foreground: oklch(0.16 0.04 160);
+  --warn: oklch(0.82 0.15 88);
+  --warn-foreground: oklch(0.2 0.05 70);
+  --high: oklch(0.74 0.17 52);
+  --high-foreground: oklch(0.18 0.05 45);
+  --severe: oklch(0.66 0.21 25);
+  --severe-foreground: oklch(0.15 0.04 20);
+
+  --chart-1: oklch(0.74 0.13 215);
+  --chart-2: oklch(0.7 0.15 295);
+  --chart-3: oklch(0.78 0.14 190);
+  --chart-4: oklch(0.8 0.15 75);
+  --chart-5: oklch(0.72 0.16 155);
+
+  --sidebar: oklch(0.2 0.038 262);
+  --sidebar-foreground: oklch(0.96 0.008 240);
+  --sidebar-primary: oklch(0.74 0.13 215);
+  --sidebar-primary-foreground: oklch(0.17 0.04 262);
+  --sidebar-accent: oklch(0.27 0.04 262);
+  --sidebar-accent-foreground: oklch(0.95 0.01 240);
+  --sidebar-border: oklch(0.98 0.01 240 / 0.12);
+  --sidebar-ring: oklch(0.7 0.12 220);
+
+  --atmos: radial-gradient(110% 80% at 10% -10%, oklch(0.45 0.12 265 / 0.55), transparent 60%),
+    radial-gradient(90% 70% at 100% 0%, oklch(0.4 0.1 210 / 0.5), transparent 55%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.3 0.09 265), oklch(0.36 0.09 210));
+  --grid-line: oklch(0.85 0.05 240 / 0.06);
+}
+
+/* ---------- Weather atmospheres (background only) ---------- */
+[data-weather="sunny"] {
+  --atmos: radial-gradient(110% 80% at 12% -12%, oklch(0.9 0.11 95 / 0.55), transparent 58%),
+    radial-gradient(95% 75% at 100% 0%, oklch(0.86 0.1 235 / 0.55), transparent 58%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.6 0.14 240), oklch(0.8 0.13 90));
+}
+.dark[data-weather="sunny"] {
+  --atmos: radial-gradient(110% 80% at 12% -12%, oklch(0.5 0.12 80 / 0.4), transparent 58%),
+    radial-gradient(95% 75% at 100% 0%, oklch(0.42 0.11 240 / 0.5), transparent 58%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.33 0.09 250), oklch(0.42 0.1 80));
+}
+[data-weather="cloudy"] {
+  --atmos: radial-gradient(120% 85% at 20% -10%, oklch(0.88 0.03 240 / 0.8), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.85 0.035 225 / 0.6), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.55 0.06 245), oklch(0.68 0.05 225));
+}
+.dark[data-weather="cloudy"] {
+  --atmos: radial-gradient(120% 85% at 20% -10%, oklch(0.38 0.03 245 / 0.7), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.34 0.03 230 / 0.6), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.3 0.04 250), oklch(0.36 0.04 228));
+}
+[data-weather="rain"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.78 0.05 238 / 0.85), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.72 0.06 220 / 0.6), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.42 0.08 246), oklch(0.56 0.08 218));
+}
+.dark[data-weather="rain"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.33 0.05 240 / 0.8), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.3 0.05 215 / 0.7), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.26 0.06 248), oklch(0.32 0.06 215));
+}
+[data-weather="storm"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.62 0.11 290 / 0.75), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.55 0.1 262 / 0.6), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.32 0.12 285), oklch(0.44 0.11 262));
+}
+.dark[data-weather="storm"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.32 0.12 292 / 0.85), transparent 62%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.26 0.1 265 / 0.75), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.24 0.11 290), oklch(0.28 0.09 262));
+}
+[data-weather="snow"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.95 0.02 220 / 0.9), transparent 64%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.9 0.04 205 / 0.7), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.62 0.08 225), oklch(0.82 0.05 205));
+}
+.dark[data-weather="snow"] {
+  --atmos: radial-gradient(120% 85% at 18% -10%, oklch(0.42 0.03 220 / 0.7), transparent 64%),
+    radial-gradient(95% 70% at 95% 5%, oklch(0.38 0.04 205 / 0.6), transparent 60%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.32 0.05 225), oklch(0.4 0.05 205));
+}
+[data-weather="fog"] {
+  --atmos: radial-gradient(130% 90% at 50% -20%, oklch(0.86 0.015 235 / 0.95), transparent 70%),
+    linear-gradient(180deg, oklch(0.9 0.012 230 / 0.6), transparent 45%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.55 0.03 238), oklch(0.7 0.025 225));
+}
+.dark[data-weather="fog"] {
+  --atmos: radial-gradient(130% 90% at 50% -20%, oklch(0.36 0.015 235 / 0.9), transparent 70%),
+    linear-gradient(180deg, oklch(0.32 0.012 230 / 0.7), transparent 45%);
+  --atmos-hero: linear-gradient(160deg, oklch(0.28 0.03 240), oklch(0.34 0.025 225));
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    transition:
+      background-color 500ms ease,
+      color 500ms ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ---------- Utilities ---------- */
+@utility atmos-bg {
+  background-image: var(--atmos);
+  background-repeat: no-repeat;
+  transition: background-image 600ms ease;
+}
+
+@utility hero-atmos {
+  background-image: var(--atmos-hero);
+}
+
+@utility grid-overlay {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility panel-hover {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--color-primary) 35%, var(--color-border));
+  }
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility alert-pulse {
+  animation: alert-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes alert-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-severe) 45%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 10px color-mix(in oklab, var(--color-severe) 0%, transparent);
+  }
+}
+
+/* Precipitation / particle ambience */
+@utility fx-rain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      102deg,
+      oklch(1 0 0 / 0.28) 0px,
+      oklch(1 0 0 / 0.28) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+    mask-image: linear-gradient(180deg, oklch(0 0 0 / 0.8), transparent);
+    animation: fx-fall 0.75s linear infinite;
+  }
+}
+
+@utility fx-snow {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle, oklch(1 0 0 / 0.75) 1.4px, transparent 1.6px),
+      radial-gradient(circle, oklch(1 0 0 / 0.5) 1.2px, transparent 1.5px);
+    background-size:
+      70px 70px,
+      110px 110px;
+    animation: fx-drift 9s linear infinite;
+  }
+}
+
+@utility fx-sun {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      36% 46% at 82% 8%,
+      oklch(0.95 0.12 92 / 0.45),
+      transparent 70%
+    );
+    animation: fx-glow 6s ease-in-out infinite;
+  }
+}
+
+@utility fx-storm {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, oklch(1 0 0 / 0.5), transparent 40%);
+    opacity: 0;
+    animation: fx-flash 7s ease-out infinite;
+  }
+}
+
+@utility fx-fog {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(60% 50% at 30% 70%, oklch(1 0 0 / 0.35), transparent 70%),
+      radial-gradient(60% 50% at 75% 40%, oklch(1 0 0 / 0.25), transparent 70%);
+    animation: fx-drift 16s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fx-fall {
+  from {
+    transform: translateY(-12px);
+  }
+  to {
+    transform: translateY(12px);
+  }
+}
+@keyframes fx-drift {
+  from {
+    transform: translate3d(-18px, 0, 0);
+  }
+  to {
+    transform: translate3d(18px, 14px, 0);
+  }
+}
+@keyframes fx-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fx-flash {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  94% {
+    opacity: 0.55;
+  }
+  96% {
+    opacity: 0.1;
+  }
+  97% {
+    opacity: 0.4;
+  }
+}
+
+/* ---------- Leaflet theming ---------- */
+.leaflet-container {
+  background: var(--color-surface-2);
+  font-family: var(--font-sans);
+  z-index: 0;
+}
+.leaflet-control-attribution {
+  background: color-mix(in oklab, var(--color-surface) 85%, transparent) !important;
+  color: var(--color-muted-foreground) !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: var(--color-primary) !important;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--color-popover) !important;
+  color: var(--color-popover-foreground) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-lift) !important;
+  border: 1px solid var(--color-border);
+}
+.leaflet-popup-content {
+  margin: 0.85rem 1rem !important;
+  min-width: 190px;
+}
+.leaflet-popup-close-button {
+  color: var(--color-muted-foreground) !important;
+}
+.hwi-marker {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid oklch(1 0 0 / 0.85);
+  box-shadow: 0 4px 12px oklch(0.2 0.05 250 / 0.35);
+  font-size: 11px;
+  font-weight: 700;
+  color: oklch(1 0 0);
+  transition: transform 180ms ease;
+}
+.hwi-marker:hover {
+  transform: scale(1.12);
+}
+.dark .leaflet-tile-pane {
+  filter: brightness(0.72) saturate(0.85) contrast(1.05);
+}
